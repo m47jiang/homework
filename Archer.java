@@ -13,12 +13,11 @@ public class Archer extends MilitaryUnit{
 
 	public boolean equals(Object verifier) {
 		if (verifier instanceof Archer ) {
-			if (super.equals(this.getPosition()) && super.equals(this.getHP()) && super.equals(this.getFaction()) && super.equals(this.arrowAvble)) {
-				return true;
-			}
-			return
+			Archer newVerify = (Archer) verifier;
+			return super.equals(newVerify) && newVerify.arrowAvble == this.arrowAvble;
 		}
+		else
 		return false;
-	}
+	}	
 
 }

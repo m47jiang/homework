@@ -15,10 +15,8 @@ public class Worker extends Unit {
 
 	public boolean equals(Object verifier) {
 		if (verifier instanceof Worker ) {
-			
-			if (super.equals(this.getPosition()) && super.equals(this.getHP()) && super.equals(this.getFaction()) && super.equals(this.jobNumber))
-				return true;
-			return false;
+			Worker newVerify = (Worker) verifier;
+			return super.equals(newVerify) && newVerify.jobNumber == this.jobNumber;
 		}
 		else
 		return false;
