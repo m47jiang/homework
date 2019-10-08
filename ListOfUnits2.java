@@ -1,8 +1,8 @@
-public class ListOfUnits {
+public class ListOfUnits2 {
 	private Unit[] unitList;
 	private int realSize;
 
-	public ListOfUnits() {
+	public ListOfUnits2() {
 		this.unitList = new Unit[10];
 		this.realSize = 0;
 	}
@@ -19,7 +19,7 @@ public class ListOfUnits {
 	}
 
 	public Unit[] getUnits() {
-		int onlyUnitSize = super.size();
+		int onlyUnitSize = this.unitList.size();
 		Unit[] onlyUnitArray = new Unit[onlyUnitSize];
 
 		int j = 0;
@@ -50,7 +50,7 @@ public class ListOfUnits {
 			int j = 0;
 			for (int i = 0; i < this.unitList.length; i++) {
 				resizedArray[j] = this.unitList[i];
-				j++;
+				j++
 			}
 			resizedArray[this.unitList.length] = tbAdded;
 			this.unitList = resizedArray;
@@ -75,7 +75,7 @@ public class ListOfUnits {
 		}
 		else {
 			for (int temp = indexOf(tbRemoved); temp < this.unitList.length - 1; temp++) {
-				this.unitList[temp] = this.unitList[temp+1];
+				this.unitList[temp] = this.unitList[temp+1]
 			}
 			return true;
 		}
@@ -85,7 +85,7 @@ public class ListOfUnits {
 		int armySize = 0;
 		for (int i = 0; i < this.unitList.size(); i++) {
 			if (this.unitList.getUnits() instanceof MilitaryUnit) {
-				armySize++;
+				armySize++:
 			}
 		}
 		MilitaryUnit[] army = new MilitaryUnit[armySize];
@@ -93,7 +93,7 @@ public class ListOfUnits {
 		for (int i = 0; i < this.unitList.size(); i++) {
 			if (this.unitList.getUnits() instanceof MilitaryUnit) {
 				army[j] = (MilitaryUnit) this.unitList.getUnits()[i];
-				j++;
+				j++
 			}
 		}
 		return army;
