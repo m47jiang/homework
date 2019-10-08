@@ -3,27 +3,30 @@ class ListOfUnits {
 	private int arraySize;
 
 	public ListOfUnits() {
-		arrayUnits = new Unit[10];
 		arraySize = 10;
+		arrayUnits = new Unit[arraySize];
 	}
 
-	public size() {
+	public int size() {
 		int counter = 0;
+		int i; //?
 		for (i = 0; i < arraySize; i++) {
-			if (arrayUnits[i] == NULL) {
+			if (arrayUnits[i] == null) {
 				counter++;
 			}
 		}
 		return arraySize - counter;
 	}
 
-	public getUnits() {
-		int newSize = arrayUnits.size();
+	public Unit[] getUnits() {
+		//int newSize = arrayUnits.size();
+		int newSize = this.size();
 		Unit[] newArrayUnit = new Unit[newSize];
 		int j = 0;
+		int i; //?
 
 		for (i = 0; i < arraySize; i++) {
-			if (arrayUnits[i] != NULL) {
+			if (arrayUnits[i] != null) {
 				newArrayUnit[j] = arrayUnits[i];
 				j++;
 			}
@@ -31,27 +34,36 @@ class ListOfUnits {
 		return newArrayUnit;
 	}
 
-	public get(int positionList) {
-		if (positionList < 0 && positionList <= arraySize) {
-		return arrayUnits[positionList];
+	public Unit get(int positionList) {
+		if (positionList >= 0 && positionList < arraySize) { //shall >= 0
+			return arrayUnits[positionList];
+		}
+		else {
+			throw new IndexOutOfBoundsException();
 		}
 	}
 
-	public add(Unit addedUnit) {
+	public void add(Unit addedUnit) { //add void
 		int newArraySize;
-		if (arraySize == arrayUnits.size()) {
+		int i; //?
+		//if (arraySize == arrayUnits.size()) {
+		if (arraySize == this.size()) {
 			newArraySize = arraySize + arraySize/2 + 1;
 			Unit[] resizedArray = new Unit[newArraySize];
-			for (i = 0; i < newArraySize; i++) {
+			for ( i = 0; i < arraySize; i++) {
 				resizedArray[i] = arrayUnits[i];
 			}
-			arrayUnits[] = resizedArray[];
+			arrayUnits = resizedArray;
 		}
-		arrayUnits[arraySize] = addedUnit;
+		//arrayUnits[arrayUnits.size()] = addedUnit; //arrayUnits.size?
+		arrayUnits[this.size()] = addedUnit; //arrayUnits.size?
 	}
 
-	public indexOf(Unit repeated) {
-		for (int i = 0; 0 < arrayUnits.size(); i++) {
+	public int indexOf(Unit repeated) {
+		int i; //?
+		int unitsize = this.size();
+		//for (int i = 0; i < arrayUnits.size(); i++) { //arrayUnits.size?
+		for ( i = 0; i < unitsize; i++) { 
 			if (arrayUnits[i] == repeated) {
 				return i;
 			}
@@ -59,43 +71,55 @@ class ListOfUnits {
 		return -1;
 	}
 
-	public remove(Unit tbRemoved) {
+	public boolean remove(Unit tbRemoved) {
 		int temp;
 		int counter = 0;
-		for (int i = 0; i < arrayUnits.size(); i++) {
+		int i;
+		int unitsize = this.size();
+		//for (int i = 0; i < arrayUnits.size(); i++) { //arrayUnits.size?
+		for ( i = 0; i < unitsize; i++) { 
 			if (arrayUnits[i] == tbRemoved) {
-					temp = i;
+					//temp = i;
 					counter = 1;
 					break;
 				}
 			}
-		for (int temp = 0; temp < arrayUnits.size() - 1; temp++) {
-			arrayUnits[temp + 1] = arrayUnits[temp];
-		}
+		//for (int temp = 0; temp < arrayUnits.size() - 1; temp++) {//arrayUnits.size?
 		if (counter == 1) {
-			return 0;
+			for ( temp = i; temp < unitsize - 1; temp++) {
+				arrayUnits[temp] = arrayUnits[temp+1];
+			}
+			arrayUnits[unitsize] = null;
+
+			return true;
 		}
 		else {
 			return false;
 		}
 	}
 
-	public getArmy() {
+	public MilitaryUnit[] getArmy() {
 		int counterArmy = 0;
-		Unit[] armyUnit;
-		for (int i = 0; i < arrayUnits.size(); i++) {
-			if (arrayUnits[i] == MilitaryUnit) {
+		int i;
+		int j;
+		MilitaryUnit[] armyUnit;
+		int unitsize=this.size();
+		//for (int i = 0; i < arrayUnits.size(); i++) {//arrayUnits.size?
+		for (i = 0; i < unitsize; i++) {
+			if (arrayUnits[i] instanceof MilitaryUnit) { 
 				counterArmy++;
 			}
 		}
-		armyUnit = new Unit(counterArmy);
-		for (int i = 0; i < arrayUnits.size(); i++) {
-			if (arrayUnits[i] == MilitaryUnit){
-				int j = 0;
-				armyUnit[j] = arrayUnits[i];
+		armyUnit = new MilitaryUnit[counterArmy];
+		//for (i = 0; i < arrayUnits.size(); i++) {//arrayUnits.size?
+		j = 0;
+		for (i = 0; i < unitsize; i++) {
+			if (arrayUnits[i] instanceof MilitaryUnit) { 
+				armyUnit[j] = (MilitaryUnit) arrayUnits[i];
 				j++;
 			}
 		}
+		return  armyUnit;
 	}
 	
 }

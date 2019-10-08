@@ -1,5 +1,5 @@
-class Unit {
-	private Tile position = new Tile();
+public abstract class Unit {
+	private Tile position;
 	private double hp;
 	private int movingRange;
 	private String faction;
@@ -11,15 +11,47 @@ class Unit {
 		this.faction = faction;
 	}
 
-	public final getPosition() {
-		return position;
+	public final Tile getPosition() {
+		return this.position;
 	}
 
-	public final getHP() {
-		return hp;
+	public final double getHP() {
+		return this.hp;
 	}
 
-	public final getFaction() {
-		return faction;
+	//public final void getFaction() {
+	public final String getFaction() {
+		//System.out.println(this.faction);
+		return this.faction;
+	}
+
+	public boolean moveTo(Tile movement) {
+		if (movement.getDistance(position, movement) > movingRange || movement.addUnit(this) == false) {
+			return false;
+		}
+		this.position = movement;
+		return true;
+	}
+
+	public void receiveDamage(double dmgTaken) {
+		if (position.isCity() == true) {
+			dmgTaken = dmgTaken * 0.9;
+		}
+		this.hp = this.hp - dmgTaken;
+		if (this.hp <= 0) {
+			position.removeUnit(this);
+		}
+	}
+
+	public abstract void takeAction(Tile targetTile);
+
+	public boolean equals(Object verifier) {
+		if (verifier instanceof Unit) {
+			if (super.equals(this.position) && super.equals(this.hp) && super.equals(this.faction)) {
+				return true;
+			}
+			return false;
+		}
+		return false;
 	}
 }
