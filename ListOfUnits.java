@@ -3,24 +3,25 @@ public class ListOfUnits {
 	private int arraySize;
 
 	public ListOfUnits() {
-		arrayUnits = new Unit[10];
-		arraySize = arrayUnits.size();
+		this.arrayUnits = new Unit[10];
+		this.arraySize = 0;
 	}
 
 	public int size() {
 		int counter = 0;
 		int i; //?
-		for (i = 0; i < arrayUnits.length; i++) {
+		for (i = 0; i < this.arrayUnits.length; i++) {
 			if (arrayUnits[i] == null) {
 				counter++;
 			}
 		}
-		return arrayUnits.length - counter;
+		this.arraySize = this.arrayUnits.length - counter;
+		return this.arrayUnits.length - counter;
 	}
 
 	public Unit[] getUnits() {
 		//int newSize = arrayUnits.size();
-		int newSize = this.size();
+		int newSize = this.arraySize;
 		Unit[] newArrayUnit = new Unit[newSize];
 		int j = 0;
 		int i; //?
