@@ -47,7 +47,7 @@ public abstract class Unit {
 
 	public boolean equals(Object verifier) {
 		if (verifier instanceof Unit) {
-			if (super.equals(this.position) && super.equals(this.hp) && super.equals(this.faction)) {
+			if (this.position.getX() == verifier.getPosition().getX() && this.position.getY() == verifier.getPosition().getY() && this.faction.equals(verifier.getFaction()) && this.hp == verifier.getHP()) {
 				return true;
 			}
 			return false;
